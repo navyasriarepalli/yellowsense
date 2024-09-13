@@ -5,8 +5,6 @@ import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 import './index.css'
 
 // import {BsMoon, BsBrightnessHigh} from 'react-icons/bs'
-import {FiMenu} from 'react-icons/fi'
-import {RiCloseCircleFill} from 'react-icons/ri'
 
 class Header extends Component {
   state = {
@@ -23,11 +21,9 @@ class Header extends Component {
   }
 
   render() {
-    const {navItem} = this.state
+    
     return (
-      <div>
-        <div className="NavbarHeader">
-          
+      <div className='header-cont'>
           <ul className="ActionsCont">
             <Link className="LogoLink" to="/">
               <li className="listing">Jobs</li>
@@ -37,7 +33,7 @@ class Header extends Component {
             </Link>
             
           </ul>
-        </div>
+        
       
       </div>
     )

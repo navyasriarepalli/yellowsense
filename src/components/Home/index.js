@@ -2,7 +2,9 @@ import {Component} from 'react'
 import JobItem from '../JobItem'
 import Header from '../Header'
 import Job from '../Job'
-import Pagination from '../Pagination/paginationa'
+import './index.css'
+
+//import Pagination from '../Pagination/paginationa'
 
 const apiStatusConstants = {
     initial: 'INITIAL',
@@ -13,7 +15,7 @@ const apiStatusConstants = {
   
 
 class Home extends Component{
-    state={apiStatus: apiStatusConstants.initial,jobsList:[],primaryDetailsMainList:[],currentPage:1,JobsPerPage:2}
+    state={apiStatus: apiStatusConstants.initial,jobsList:[]}
     componentDidMount() {
         this.getAllJobs()
     }
@@ -78,17 +80,13 @@ class Home extends Component{
     
     renderJobList = () => {
         
-        const {jobsList,JobsPerPage,currentPage} = this.state
-        const newJoblist=jobsList
-        const lastPostIndex=currentPage * JobsPerPage;
-        const firstPostIndex =lastPostIndex - JobsPerPage;
-        const currentPosts=newJoblist.slice(firstPostIndex,lastPostIndex)
-        console.log(currentPage)
+        
+        const {jobsList} = this.state
     
         return (
           <ul className="jobs-list-cont">
             
-            {currentPosts.map(eachItem => {
+            {jobsList.map(eachItem => {
                 
                 if(eachItem.id===undefined){
                     return ""
@@ -116,26 +114,20 @@ class Home extends Component{
 
 
     }
-    clicking = page=> {
-        this.setState({currentPage:page})
-        console.log(page)
-    }
+    
     render(){
-        const {jobsList,JobsPerPage,currentPage} = this.state
+        const {jobsList} = this.state
         console.log(jobsList)
 
         
 
         
         return(
-            <div>
+            <div className='home-bg'>
                 <Header />
                 
-                <div>{this.renderJobList()}</div>
-                <div><Pagination totalJobs={jobsList.length}
-                JobsPerPage={JobsPerPage} clicking={this.clicking}
-    
-                currentPage={currentPage}/></div>
+                <div className='home-bg-2'>{this.renderJobList()}</div>
+                
                 
                 
             </div>

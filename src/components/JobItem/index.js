@@ -54,7 +54,7 @@ const JobItem=props=>{
                         
                         <p>Salary: {salaryMin} to {salaryMax}</p>
                         <p>whatsapp No: {whatsappNo}</p>
-                        <button onClick={onClickJob}>View More</button>
+                        <button type="btn" className='btn-item' onClick={onClickJob}>View More</button>
                         
                         
                     </li>

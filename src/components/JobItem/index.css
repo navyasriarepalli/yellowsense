@@ -2,8 +2,19 @@
     color: black;
 }
 .main-list-cont{
-    background-color: blue;
+    background-color: rgb(243, 135, 116);
     margin: 2%;
-    padding: 4%;
+
+    padding: 2%;
     color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    border-radius: 7px;
+}
+.btn-item{
+    border-radius: 10px;
+    height: 5vh;
+    width: 9vw;
+    font-size: 18px;
+
 }

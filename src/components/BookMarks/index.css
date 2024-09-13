@@ -1,0 +1,31 @@
+.book-bg{
+    background-color: aquamarine;
+    
+    background-size: cover;
+    height: auto;
+    font-family: "Bree-Serif";
+    
+    
+
+}
+.biik-head{
+    text-align: center;
+}
+.book-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 80vh;
+    font-size: 25px;
+    
+}
+.book-cont-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bookmarj-main{
+    background-color: aquamarine;
+}
+
