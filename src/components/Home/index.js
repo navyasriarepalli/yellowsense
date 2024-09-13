@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import JobItem from '../JobItem'
 import Header from '../Header'
+import Job from '../Job'
+import Pagination from '../Pagination/paginationa'
 
 const apiStatusConstants = {
     initial: 'INITIAL',
@@ -11,7 +13,7 @@ const apiStatusConstants = {
   
 
 class Home extends Component{
-    state={apiStatus: apiStatusConstants.initial,jobsList:[],primaryDetailsMainList:[]}
+    state={apiStatus: apiStatusConstants.initial,jobsList:[],primaryDetailsMainList:[],currentPage:1,JobsPerPage:2}
     componentDidMount() {
         this.getAllJobs()
     }
@@ -38,6 +40,7 @@ class Home extends Component{
             jobHours:each.job_hours,
             whatsappNo:each.whatsapp_no,
             content:each.content,
+            
         }))
       
 
@@ -52,8 +55,7 @@ class Home extends Component{
           searchInput: '',
         })
     
-        const {jobsList,primaryDetailsMainList} = this.state
-        console.log(jobsList,primaryDetailsMainList)
+       
     }
 
     getAllJobs = async () => {
@@ -75,12 +77,18 @@ class Home extends Component{
     }
     
     renderJobList = () => {
-        const {jobsList} = this.state
+        
+        const {jobsList,JobsPerPage,currentPage} = this.state
+        const newJoblist=jobsList
+        const lastPostIndex=currentPage * JobsPerPage;
+        const firstPostIndex =lastPostIndex - JobsPerPage;
+        const currentPosts=newJoblist.slice(firstPostIndex,lastPostIndex)
+        console.log(currentPage)
     
         return (
           <ul className="jobs-list-cont">
             
-            {jobsList.map(eachItem => {
+            {currentPosts.map(eachItem => {
                 
                 if(eachItem.id===undefined){
                     return ""
@@ -97,14 +105,39 @@ class Home extends Component{
     }
 
     renderJob=()=>{
+        const {jobsList} = this.state
+        console.log(jobsList)
+
+
+        return(
+            <Job job={jobsList}/>
+        )
+
+
 
     }
+    clicking = page=> {
+        this.setState({currentPage:page})
+        console.log(page)
+    }
     render(){
+        const {jobsList,JobsPerPage,currentPage} = this.state
+        console.log(jobsList)
+
+        
+
+        
         return(
             <div>
                 <Header />
                 
                 <div>{this.renderJobList()}</div>
+                <div><Pagination totalJobs={jobsList.length}
+                JobsPerPage={JobsPerPage} clicking={this.clicking}
+    
+                currentPage={currentPage}/></div>
+                
+                
             </div>
         )
     }
